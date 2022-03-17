@@ -1,4 +1,4 @@
-console.log('welcome to listener project')
+console.log('welcome to listener project 1')
 const { providers, Contract, utils } = require("ethers");
 require('dotenv').config();
 
@@ -62,7 +62,9 @@ const abi = [
         const contract = new Contract(tokens[i].address, abi, provider);
 
         contract.on("Transfer", async (from, to, amount, event) => {
+            if (Number(utils.formatUnits(amount, 18))<101)
             console.log(from, to, Number(utils.formatUnits(amount, 18)))
+        //     // console.log("si entro")
         });
     }
 })();
